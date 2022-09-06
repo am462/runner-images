@@ -31,7 +31,7 @@ buildXamarinMacDownloadUrl() {
 }
 
 buildXamarinAndroidDownloadUrl() {
-    echo "-k https://dl.xamarin.com/MonoforAndroid/Mac/xamarin.android-${1}.pkg"
+    echo "https://dl.xamarin.com/MonoforAndroid/Mac/xamarin.android-${1}.pkg"
 }
 
 installMono() {

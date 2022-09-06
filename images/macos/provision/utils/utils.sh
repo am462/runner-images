@@ -8,11 +8,16 @@ download_with_retries() {
     local DEST="${2:-.}"
     local NAME="${3:-${URL##*/}}"
     local COMPRESSED="$4"
+    local SUB="dl.xamarin.com"
 
     if [[ $COMPRESSED == "compressed" ]]; then
         local COMMAND="curl $URL -4 -sL --compressed -o '$DEST/$NAME' -w '%{http_code}'"
     else
-        local COMMAND="curl $URL -4 -sL -o '$DEST/$NAME' -w '%{http_code}'"
+        if [[ "$URL" == *"$SUB"*  ]]; then
+          local COMMAND="curl -k $URL -4 -sL -o '$DEST/$NAME' -w '%{http_code}'"
+        else
+          local COMMAND="curl $URL -4 -sL -o '$DEST/$NAME' -w '%{http_code}'"
+        fi
     fi
 
     echo "Downloading '$URL' to '${DEST}/${NAME}'..."
