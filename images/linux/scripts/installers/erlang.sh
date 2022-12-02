@@ -13,11 +13,12 @@ source_key=/usr/share/keyrings/eslerlang.gpg
 
 # Install Erlang
 if isUbuntu22; then
-    #echo "deb [signed-by=/usr/share/keyrings/eslerlang.gpg] https://packages.erlang-solutions.com/ubuntu focal contrib" | tee $source_list
-    #wget -qO- https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | gpg --dearmor | tee $source_key
-    wget -qO- https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | gpg --dearmor -o /etc/apt/trusted.gpg.d/erlang.gpg
+    ###echo "deb [signed-by=/usr/share/keyrings/eslerlang.gpg] https://packages.erlang-solutions.com/ubuntu focal contrib" | tee $source_list
+    ##wget -qO- https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | gpg --dearmor | tee $source_key
+    #wget -qO- https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | gpg --dearmor -o /etc/apt/trusted.gpg.d/erlang.gpg
+    wget -q -O - https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | gpg --dearmor > $source_key
     apt-get update
-    apt-get install -y erlang
+    apt-get install -y --no-install-recommends erlang
 else
     wget -q -O - https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | gpg --dearmor > $source_key
     echo "deb [signed-by=$source_key]  https://packages.erlang-solutions.com/ubuntu $(lsb_release -cs) contrib" > $source_list
