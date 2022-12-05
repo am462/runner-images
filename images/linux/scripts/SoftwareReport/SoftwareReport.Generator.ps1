@@ -57,7 +57,7 @@ $runtimesList = @(
     (Get-SwiftVersion)
 )
 
-if ((Test-IsUbuntu18) -or (Test-IsUbuntu20)) {
+if ((Test-IsUbuntu18) -or (Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
     $runtimesList += @(
         (Get-ErlangVersion),
         (Get-ErlangRebar3Version)
